@@ -1,7 +1,7 @@
 # Investment Calculator
 
 ### Example of the User Interface
-![Investment Calculator UI](public/a.png)
+![Investment Calculator UI](investment-calculator/public/a.png)
 
 
 ## Description
@@ -45,16 +45,16 @@ The app should automatically open at http://localhost:3000.
 **Contributions**
 Contributions are welcome! If you’d like to contribute code to improve this project, please follow these steps:
 
-1.Fork the repository.
-2.Create a new branch for your feature or bug:
+1. **Fork the repository.**
+2. **Create a new branch for your feature or bug:**
     ```bash
     git checkout -b feature-name
-3.Make your changes and commit them:
+3. **Make your changes and commit them:**
     ```bash
     git commit -m "Description of changes"
-4.Push your changes to your forked repository:
+4. **Push your changes to your forked repository:**
     ```bash
     git push origin feature-name
-5.Open a Pull Request (PR) with a detailed description of your changes.
+5. **Open a Pull Request (PR) with a detailed description of your changes.**
 
 **Thank you for helping to improve this project!**
