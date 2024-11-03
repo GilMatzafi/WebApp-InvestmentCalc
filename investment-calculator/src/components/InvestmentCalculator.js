@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import InitialInvestmentInput from './InitialInvestmentInput';
 import InvestmentDurationInput from './InvestmentDurationInput';
 import AnnualInterestRateInput from './AnnualInterestRateInput';
 import CompoundFrequencySelector from './CompoundFrequencySelector';
 import MonthlyContributionInput from './MonthlyContributionInput';
 import CalculateButton from './CalculateButton';
+import InvestmentGrowthChart from './InvestmentGrowthChart';
 
 const InvestmentCalculator = () => {
   // הגדרת state עבור כל אחד מהערכים מהקומפוננטים
@@ -16,6 +18,8 @@ const InvestmentCalculator = () => {
   const [annualInterestRate, setAnnualInterestRate] = useState('');
   const [compoundFrequency, setCompoundFrequency] = useState('annually');
   const [result, setResult] = useState(null);
+  const [chartData, setChartData] = useState([]);
+
 
   const handleCalculate = () => {
     const P = parseFloat(initialInvestment);
@@ -24,26 +28,42 @@ const InvestmentCalculator = () => {
     const n = compoundFrequency === 'daily' ? 365 : compoundFrequency === 'monthly' ? 12 : 1;
     const M = parseFloat(monthlyContribution);
   
-    // חישוב סכום הקרן המקורי
-    const A = P * Math.pow((1 + r / n), n * t);
-  
-    // חישוב הסכום מההפקדות החודשיות
+    // חישוב הסכום הראשוני עם ריבית דריבית
+    let data = [];
+    let accumulatedAmount = P;
     let futureValueOfMonthlyContribution = 0;
-    if (M > 0) {
-      const months = t * 12;
-      const monthlyRate = r / 12;
-      futureValueOfMonthlyContribution = M * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+  
+    for (let year = 1; year <= t; year++) {
+      // חישוב הקרן בתום כל שנה
+      accumulatedAmount = accumulatedAmount * Math.pow(1 + r / n, n);
+  
+      // חישוב הערך העתידי של הפקדות חודשיות במהלך כל שנה
+      if (M > 0) {
+        futureValueOfMonthlyContribution = M * ((Math.pow(1 + r / 12, year * 12) - 1) / (r / 12));
+      }
+  
+      const totalAmount = accumulatedAmount + futureValueOfMonthlyContribution;
+  
+      // הוספת הנתונים עבור השנה לגרף
+      data.push({ year, amount: parseFloat(totalAmount.toFixed(2)) });
     }
   
-    const totalAmount = A + futureValueOfMonthlyContribution;
-    setResult(totalAmount.toFixed(2));
+    setChartData(data);
+    setResult(data[data.length - 1].amount.toFixed(2));
   };
+  
   
 
   return (
     <Container className="mt-5">
-      <h1 className="text-center display-4 mb-4 title">מחשבון השקעות</h1>
-      
+      <motion.h1 
+            className="text-center display-4 mb-4 title"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <a href="/" className="title-link">מחשבון השקעות</a>
+        </motion.h1>      
       <Card className="p-4 shadow-sm custom-card">
         <Form>
           <InitialInvestmentInput value={initialInvestment} onChange={setInitialInvestment} />
@@ -64,8 +84,15 @@ const InvestmentCalculator = () => {
       </Card>
 
       {result && (
-        <h2 className="result text-center">תוצאה: ₪{result}</h2>
-      )}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="result text-center">תוצאה: ₪{result}</h2>
+          <InvestmentGrowthChart data={chartData} />
+        </motion.div>
+    )}
     </Container>
   );
 };
