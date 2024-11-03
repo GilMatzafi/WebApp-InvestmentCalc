@@ -36,3 +36,57 @@
     transform: rotate(360deg);
   }
 }
+
+/* כותרת ראשית */
+.title {
+  color: #4CAF50; /* צבע ירוק כהה */
+  font-weight: bold;
+}
+
+/* צבע רקע לכרטיס */
+.custom-card {
+  background-color: #f8f9fa; /* רקע אפור בהיר */
+  border-color: #e9ecef; /* צבע גבול עדין */
+}
+
+/* כפתור חישוב */
+.calculate-button {
+  background-color: #0062cc;
+  border-color: #0062cc;
+  color: #fff;
+}
+
+.calculate-button:hover {
+  background-color: #004ba0; /* גוון כהה יותר עבור אפקט ריחוף */
+  border-color: #004ba0;
+}
+
+/* תוצאה */
+.result {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+}
+
+body {
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.App {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+
+

@@ -1,18 +1,19 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 
 const InitialInvestmentInput = ({ value, onChange }) => {
   return (
-    <div>
-      <label htmlFor="initialInvestment">סכום התחלתי:</label>
-      <input
+    <Form.Group controlId="initialInvestment" className="mb-3">
+      <Form.Label>סכום התחלתי:</Form.Label>
+      <Form.Control
         type="number"
-        id="initialInvestment"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="הזן סכום התחלתי"
       />
-    </div>
+    </Form.Group>
   );
 };
 
 export default InitialInvestmentInput;
+
