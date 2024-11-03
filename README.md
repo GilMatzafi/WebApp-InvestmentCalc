@@ -42,7 +42,7 @@ The app is built with React and styled with Bootstrap, providing a clean and use
 
 The app should automatically open at http://localhost:3000.
 
-**Contributions**
+## Contributions
 Contributions are welcome! If you’d like to contribute code to improve this project, please follow these steps:
 
 1. **Fork the repository.**
