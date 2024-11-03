@@ -1,7 +1,12 @@
 # Investment Calculator
 
-### Example of the User Interface
-![Investment Calculator UI](investment-calculator/public/a.png)
+### Example of My Project
+1. **Initial screen: placeholders show example values:**
+![Investment Calculator UI](investment-calculator/public/b.png)
+2. **Updated screen: placeholders prompt the user directly:**
+![Investment Calculator UII](investment-calculator/public/c.png)
+3. **Graph of our investment:**
+![Investment Calculator UII](investment-calculator/public/d.png)
 
 
 ## Description
